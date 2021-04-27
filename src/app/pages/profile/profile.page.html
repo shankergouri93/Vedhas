@@ -1,0 +1,57 @@
+<div>
+<form [formGroup]="loginForm" style="text-align: center;">
+
+  <div class="form-group row">
+    <label for="inputFirstname" class="col-sm-2 col-form-label">Firstname</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="Firstname" placeholder="Firstname" formControlName="firstname"
+        [readonly]="!isEditable">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputLastname" class="col-sm-2 col-form-label">Laststname</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="inputLastname" placeholder="Lastname" formControlName="lastname"
+        [readonly]="!isEditable">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputProfilePicture" class="col-sm-2 col-form-label">Profile picture</label>
+    <div class="col-sm-2">
+      <img alt="profile picture" [src]="image" style="height: 100px;width: 100px;" *ngIf="!isEditable" />
+      <input type="file" (change)="upload($event)" *ngIf="isEditable" class="form-control" id="inputProfilePicture"
+        placeholder="ProfilePicture">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-1"></div>
+    <div style="margin: 5px;">
+      <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </div>
+    <div class="col-sm-2" style="margin: 5px;">
+      <button type="submit" class="btn btn-primary" [disabled]="isEditable && !loginForm.valid"
+        (click)="onEdit()">{{this.isEditable? "Save" : "Edit"}}</button>
+    </div>
+  </div>
+</form>
+
+<div class="form-group row">
+  <label for="inputAccounts" class="col-sm-2 col-form-label">Accounts</label>
+  <div class="col-sm-2">
+   <textarea class="form-control"  id="inputAccounts" placeholder="Accounts" [(ngModel)]="accounts"></textarea>
+  </div>
+  <label for="inputBalances" class="col-sm-2 col-form-label">Balances</label>
+  <div class="col-sm-2">
+    <textarea class="form-control"  id="inputBalances" placeholder="Balances" [(ngModel)]="balances"></textarea>
+   </div>
+   <div style="margin: 5px;">
+    <button type="button" class="btn btn-primary" (click)="order()">Order</button>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputOutput" class="col-sm-2 col-form-label">Output</label>
+  <div class="col-sm-2">
+   <textarea class="form-control"  id="inputOutput" readonly [(ngModel)]="output"></textarea>
+  </div>
+</div>
+</div>
